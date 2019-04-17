@@ -10,9 +10,12 @@ namespace ContainerSchip.Logic
     {
         public List<ContainerSpot> ContanerSpots { get; set; } = new List<ContainerSpot>();
         public Type Type { get; set; }
+        public int Height { get; set; }
 
         public ShipTower(int height, Type type)
         {
+            Height = height;
+
             if (type == Type.Cooled)
             {
                 for (int i = 0; i < height; i++)

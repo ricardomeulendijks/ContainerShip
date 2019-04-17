@@ -11,14 +11,14 @@ namespace ContainerSchip.Logic
     {
         private readonly Container _container = new Container();
         public List<ShipSide> shipSides = new List<ShipSide>();
-        private int maxLoad = 130000; 
+        public int MaxLoad = 120000;
 
 
 
         public Ship(int length, int width)
         {
             if (width % 2 != 0) throw new ArgumentException("Width needs to be even");
-            int height = maxLoad / _container.MinWeight; 
+            int height = (MaxLoad + _container.MinWeight) / _container.MinWeight; 
             int sideWidth = width/2; 
 
 

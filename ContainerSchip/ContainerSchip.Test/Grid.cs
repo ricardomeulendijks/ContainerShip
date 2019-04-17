@@ -11,6 +11,7 @@ namespace ContainerSchip.Test
     public class Grid
     {
         private Ship _ship;
+        private Container _container;
         private int _length;
         private int _width;
 
@@ -85,7 +86,7 @@ namespace ContainerSchip.Test
         public void AnySpotsAreNormalExeptTheFirst()
         {
             _ship = new Ship(_length, _width);
-
+            
             // for every side
             for (int side = 0; side < _ship.shipSides.Count; side++)
             {
@@ -109,6 +110,22 @@ namespace ContainerSchip.Test
 
             Trace.WriteLine("Every spot is normal");
             Assert.IsTrue(true);
+        }
+
+        [TestMethod]
+        public void SpotsAreNeverHigherThenNeeded()
+        {
+            _ship = new Ship(_length, _width);
+            _container = new Container();
+
+            int shipHeight = _ship.shipSides[0].ShipSlices[0].Towers[0].Height;
+            int maxHeight = (_ship.MaxLoad + _container.MinWeight) / _container.MinWeight;
+
+            Trace.WriteLine("Schiphoogte: " + shipHeight);
+            Trace.WriteLine("Maximale hoogte: " + maxHeight);
+            Assert.AreEqual(shipHeight,maxHeight);
+
+
         }
     }
 }
