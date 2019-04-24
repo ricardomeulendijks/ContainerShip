@@ -12,11 +12,16 @@ namespace ContainerSchip.Logic
 
         public ShipSide(int length, int width, int height)
         {
+            GenerateShipSlices(width,length,height);
+        }
+
+        private void GenerateShipSlices(int width, int length, int height)
+        {
             for (int i = 0; i < width; i++)
             {
                 ShipSlice slice = new ShipSlice(length, height);
                 ShipSlices.Add(slice);
-            }            
+            }
         }
     }
 }

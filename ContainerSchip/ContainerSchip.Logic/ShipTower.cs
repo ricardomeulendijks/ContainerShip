@@ -15,7 +15,11 @@ namespace ContainerSchip.Logic
         public ShipTower(int height, Type type)
         {
             Height = height;
+            GenerateSpots(type,height);
+        }
 
+        private void GenerateSpots(Type type, int height)
+        {
             if (type == Type.Cooled)
             {
                 for (int i = 0; i < height; i++)
@@ -33,5 +37,7 @@ namespace ContainerSchip.Logic
                 Type = Type.Normal;
             }
         }
+
+
     }
 }
