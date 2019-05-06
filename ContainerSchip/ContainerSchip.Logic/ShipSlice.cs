@@ -32,5 +32,21 @@ namespace ContainerSchip.Logic
                 Towers.Add(tower);
             }
         }
+
+        public int GetMostEmptyTower()
+        {
+            return Towers.IndexOf(Towers.Find(c => c.CalculateWeight() == Towers.Min(a => a.CalculateWeight())));
+        }
+
+        public int CalculateWeight()
+        {
+            int weight = 0;
+            foreach (var tower in Towers)
+            {
+               weight = weight + tower.CalculateWeight();
+            }
+
+            return weight;
+        }
     }
 }

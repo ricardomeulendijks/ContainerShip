@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,6 +23,22 @@ namespace ContainerSchip.Logic
                 ShipSlice slice = new ShipSlice(length, height);
                 ShipSlices.Add(slice);
             }
+        }
+
+        public int GetMostEmptySlice()
+        {
+            return ShipSlices.IndexOf(ShipSlices.Find(c => c.CalculateWeight() == ShipSlices.Min(a => a.CalculateWeight())));
+        }
+
+        public int CalculateWeight()
+        {
+            int weight = 0;
+            foreach (var slice in ShipSlices)
+            {
+                weight = weight + slice.CalculateWeight();
+            }
+
+            return weight; 
         }
     }
 }

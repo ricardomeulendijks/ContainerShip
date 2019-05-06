@@ -8,7 +8,7 @@ using Type = ContainerSchip.Logic.Type;
 namespace ContainerSchip.Test
 {
     [TestClass]
-    public class Grid
+    public class GridTest
     {
         private Ship _ship;
         private Container _container;
@@ -76,7 +76,6 @@ namespace ContainerSchip.Test
                     }
                 }
             }
-
             Trace.WriteLine("Every spot is cooled");
             Assert.IsTrue(true);
             
@@ -119,7 +118,7 @@ namespace ContainerSchip.Test
             _container = new Container();
 
             int shipHeight = _ship.ShipSides[0].ShipSlices[0].Towers[0].Height;
-            int maxHeight = (_ship.MaxLoad + _container.MinWeight) / _container.MinWeight;
+            int maxHeight = (Ship.MaxHeightLoad + Container.MinWeight) / Container.MinWeight;
 
             Trace.WriteLine("Schiphoogte: " + shipHeight);
             Trace.WriteLine("Maximale hoogte: " + maxHeight);

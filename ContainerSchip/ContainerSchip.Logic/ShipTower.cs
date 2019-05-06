@@ -29,15 +29,50 @@ namespace ContainerSchip.Logic
                     Type = Type.Cooled;
                 }
             }
-
-            for (int i = 0; i < height; i++)
+            else
             {
-                ContainerSpot normalSpot = new ContainerSpot() { Cooled = false, SpotFilled = false };
-                ContanerSpots.Add(normalSpot);
-                Type = Type.Normal;
+                for (int i = 0; i < height; i++)
+                {
+                    ContainerSpot normalSpot = new ContainerSpot() { Cooled = false, SpotFilled = false };
+                    ContanerSpots.Add(normalSpot);
+                    Type = Type.Normal;
+                }
             }
         }
 
+        public bool ContainerFits(Container container)
+        {
+            return (CalculateWeight() + container.Weight <= Ship.MaxHeightLoad);
+        }
+
+        public int CalculateWeight()
+        {
+            int weight = 0; 
+            foreach (var spot in ContanerSpots)
+            {
+                if (spot.Container != null)
+                {
+                    weight = weight + spot.Container.Weight;
+                }
+            }
+
+            return weight; 
+        }
+
+        public int GetFirstEmptySpot()
+        {
+            int index = -1;
+            for (int i = 0; i < ContanerSpots.Count; i++)
+            {
+                if (!ContanerSpots[i].SpotFilled)
+                {
+                    index = i;
+                    break;
+                }
+            }
+
+            return index; 
+        }
 
     }
 }
