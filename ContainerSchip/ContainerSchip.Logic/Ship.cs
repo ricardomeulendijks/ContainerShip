@@ -96,7 +96,6 @@ namespace ContainerSchip.Logic
                 }
                 index++;
             }
-
             Console.WriteLine(unplaced.Count + " Containers not placed");
             return unplaced;
         }
