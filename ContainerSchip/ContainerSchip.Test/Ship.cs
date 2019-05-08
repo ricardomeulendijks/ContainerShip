@@ -21,12 +21,38 @@ namespace ContainerSchip.Test
         {
             _length = 5;
             _width = 6;
+            _ship = new Ship(_length,_width);
+        }
+
+
+        [TestMethod]
+        public void PlaceCooledContainers()
+        {
+            List<Container> containers = new List<Container>();
+
+            for (int i = 0; i < 12; i++)
+            {
+                Container container = new Container()
+                {
+                    Placed = true,
+                    Type = Type.Cooled
+                };
+
+                container.SetWeight(24000);
+
+                containers.Add(container);
+            }
+            Assert.AreEqual(0,_ship.PlaceCooled(containers).Count);
+            double side1 = _ship.ShipSides[0].CalculateWeight();
+            double side2 = _ship.ShipSides[1].CalculateWeight();
+
+            Trace.WriteLine(side1 + " / " + side2 + " Percentage " + _ship.GetLoadBalancingPercentage() + " %");
+
         }
 
         [TestMethod]
         public void LoadBalancingContainers()
         {
-            Ship ship = new Ship(_length,_width);
             List<Container> containers = new List<Container>();
 
             for (int i = 0; i < 11; i++)
@@ -34,20 +60,44 @@ namespace ContainerSchip.Test
                 Container container = new Container()
                 {
                     Placed = true,
-                    Type = Type.Normal,
-                    Weight = 3000
+                    Type = Type.Normal
                 };
+                container.SetWeight(3000);
 
                 containers.Add(container);              
             }
 
-            Assert.IsTrue(ship.Place(containers));
+            Assert.AreEqual(0, _ship.Place(containers).Count);
+            double side1 = _ship.ShipSides[0].CalculateWeight();
+            double side2 = _ship.ShipSides[1].CalculateWeight();
 
-
-
-            Trace.WriteLine(ship.ShipSides[0].CalculateWeight() + " / " + ship.ShipSides[1].CalculateWeight());
+            Trace.WriteLine(side1 + " / " + side2 + " Percentage "+ _ship.GetLoadBalancingPercentage() + " %");
         }
 
+
+        [TestMethod]
+        public void ShipIsMoreThen50PercentLoaded()
+        {
+            _ship = new Ship(1,2);
+
+            List<Container> containers = new List<Container>();
+
+            for (int i = 0; i < 10; i++)
+            {
+                Container container = new Container()
+                {
+                    Placed = true,
+                    Type = Type.Normal
+                };
+                container.SetWeight(26000);
+
+                containers.Add(container);
+            }
+
+            _ship.Place(containers); 
+            Assert.AreEqual(true, _ship.ShipIsMoreThenFiftyPercentLoaded());
+
+        }
 
     }
 }

@@ -25,6 +25,11 @@ namespace ContainerSchip.Logic
             }
         }
 
+        public int GetMostEmptyCooledSlice()
+        {
+            return ShipSlices.IndexOf(ShipSlices.Find(c => c.Towers[0].CalculateWeight() == ShipSlices.Min(a => a.Towers[0].CalculateWeight())));
+        }
+
         public int GetMostEmptySlice()
         {
             return ShipSlices.IndexOf(ShipSlices.Find(c => c.CalculateWeight() == ShipSlices.Min(a => a.CalculateWeight())));

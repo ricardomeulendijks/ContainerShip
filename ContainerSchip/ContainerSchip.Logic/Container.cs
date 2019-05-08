@@ -9,8 +9,16 @@ namespace ContainerSchip.Logic
     public class Container
     {
         public Type Type { get; set; }
-        public static int MinWeight { get; } = 4000; 
+        public int Weight { get; private set; } = MinWeight;
+        public static int MinWeight { get; } = 4000;
+        public static int MaxWeight { get; } = 30000;
+        public static int MaxStackWeight { get; } = 120000;
+
         public bool Placed { get; set; }
-        public int Weight { get; set; }
+
+        public void SetWeight(int value)
+        {
+            Weight = Weight + value;
+        }
     }
 }

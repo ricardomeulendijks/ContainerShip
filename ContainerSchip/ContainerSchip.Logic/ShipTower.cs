@@ -42,7 +42,8 @@ namespace ContainerSchip.Logic
 
         public bool ContainerFits(Container container)
         {
-            return (CalculateWeight() + container.Weight <= Ship.MaxHeightLoad);
+            if (ContanerSpots[0].Container == null) return true; 
+            return (CalculateWeight() - ContanerSpots[0].Container.Weight + container.Weight <= Container.MaxStackWeight);
         }
 
         public int CalculateWeight()
@@ -55,7 +56,6 @@ namespace ContainerSchip.Logic
                     weight = weight + spot.Container.Weight;
                 }
             }
-
             return weight; 
         }
 

@@ -15,48 +15,99 @@ namespace ContainerSchip
 {
     public partial class Form1 : Form
     {
+        private int totalWeight = 0;
         private Ship ship;
+        List<Container> cooledContainers = new List<Container>();
+        List<Container> normalContainers = new List<Container>();
+        List<Container> highValueContainers = new List<Container>();
 
         public Form1()
         {
             InitializeComponent();
-            ship = new Ship(1, 2);
+            foreach (Type type in (Type[])Enum.GetValues(typeof(Type)))
+            {
+
+                CbType.Items.Add(type);
+            }
         }
 
-        private void Create_Click(object sender, EventArgs e)
+        private void GenerateShip_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < 8; i++)
+            if (Length.Value == 0 || Width.Value == 0)
             {
-                for (int j = 0; j < 8; j++)
+                MessageBox.Show("", "No Input");
+            }
+            else
+            {
+                ship = new Ship(Convert.ToInt32(Length.Value), Convert.ToInt32(Width.Value));
+            }
+
+        }
+
+        private void AddContainer_Click(object sender, EventArgs e)
+        {
+
+            Container container = new Container()
+            {
+                Type = (Type)CbType.SelectedItem
+            };
+
+            container.SetWeight(Convert.ToInt32(NbWeight.Value));
+            LbContainers.Items.Add(container);
+
+            totalWeight = totalWeight + container.Weight;
+            LbWeight.Text = totalWeight.ToString();
+
+            switch (container.Type)
+            {
+                case Type.Cooled :
+                    cooledContainers.Add(container);
+                    break;
+                case Type.Normal:
+                   normalContainers.Add(container);
+                    break;
+                case Type.HighValue:
+                    highValueContainers.Add(container);
+                    break;
+            }
+        }
+
+        private void Sort_Click(object sender, EventArgs e)
+        {
+            if (ship == null)
+            {
+                MessageBox.Show("First Create a ship");
+                return; 
+            }
+
+            if(cooledContainers.Count > 0) ship.PlaceCooled(cooledContainers);
+            if(normalContainers.Count > 0) ship.Place(normalContainers);
+            GenerateButtons(ship.Width,ship.Length);
+        }
+
+        private void GenerateButtons(int width, int length)
+        {
+            int ButtonWidth = 40;
+            int ButtonHeight = 40;
+            int Distance = 20;
+            int start_x = 10;
+            int start_y = 350;
+
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < length; y++)
                 {
-                    Button BtnNew = new Button();
-                    BtnNew.Height = 80;
-                    BtnNew.Width = 80;
-                    BtnNew.Location = new Point(80 * i, 80 * j);
-                    BtnNew.Text = "spot";
-                    this.Controls.Add(BtnNew);
+                    Button tmpButton = new Button();
+                    tmpButton.Top = start_x + (x * ButtonHeight + Distance);
+                    tmpButton.Left = start_y + (y * ButtonWidth + Distance);
+                    tmpButton.Width = ButtonWidth;
+                    tmpButton.Height = ButtonHeight;
+                    tmpButton.Text = "X: " + x.ToString() + " Y: " + y.ToString();
+                    // Possible add Buttonclick event etc..
+                    this.Controls.Add(tmpButton);
                 }
+
             }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            List<Container> containers = new List<Container>();
-
-            for (int i = 0; i < 10; i++)
-            {
-                Container container = new Container()
-                {
-                    Placed = false,
-                    Type = Type.Normal,
-                    Weight = 1005
-                };
-
-                containers.Add(container);
-            }
-
-            ship.Place(containers);
-
         }
     }
 }

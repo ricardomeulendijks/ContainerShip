@@ -15,8 +15,16 @@ namespace ContainerSchip.Logic
 
         public bool AddContainer(Container container)
         {
-            if (SpotFilled == true || Container != null) return false;
+            if (container.Weight > Container.MaxWeight)
+            {
+                Console.WriteLine("The weight of the container provided is too high");
+                return false;
+            }
 
+            if (SpotFilled == true || Container != null) throw new Exception("You are trying to add an cooled container to a normal spot! ");
+            if (container.Type == Type.Cooled && Cooled == false) throw new Exception("You are trying to add an cooled container to a normal spot! ");
+            
+            // Place Container
             Container = container;
             Container.Placed = true;
             SpotFilled = true;

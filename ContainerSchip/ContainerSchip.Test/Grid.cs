@@ -118,7 +118,7 @@ namespace ContainerSchip.Test
             _container = new Container();
 
             int shipHeight = _ship.ShipSides[0].ShipSlices[0].Towers[0].Height;
-            int maxHeight = (Ship.MaxHeightLoad + Container.MinWeight) / Container.MinWeight;
+            int maxHeight = (Container.MaxStackWeight + Container.MinWeight) / Container.MinWeight;
 
             Trace.WriteLine("Schiphoogte: " + shipHeight);
             Trace.WriteLine("Maximale hoogte: " + maxHeight);
