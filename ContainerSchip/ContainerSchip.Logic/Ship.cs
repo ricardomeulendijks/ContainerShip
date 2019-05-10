@@ -128,7 +128,6 @@ namespace ContainerSchip.Logic
         
         public List<Container> PlaceHighValue (List<Container> highValueContainers)
         {
-            int index = 0;
             List<Container> unplaced = new List<Container>();
             foreach (var container in highValueContainers)
             {
@@ -145,7 +144,6 @@ namespace ContainerSchip.Logic
                     ContainerSpot spot = tower.ContanerSpots[tower.GetFirstEmptySpot()];
                     if (!spot.AddContainer(container)) unplaced.Add(container);
                 }
-                index++;
             }
 
             Console.WriteLine("Containers not placed " + unplaced.Count);

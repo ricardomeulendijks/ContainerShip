@@ -53,6 +53,8 @@ namespace ContainerSchip.Logic
         {
             List<Container> blockingContainers = GetblockingContainers(towerIndex, height);
 
+            if (Towers[towerIndex].ContanerSpots[height].Container != null) return false;
+
             // Container doesn't get blocked or container behind is not important
             if (blockingContainers.Count == 0 || blockingContainers[0].Type != Type.HighValue) return true;
 

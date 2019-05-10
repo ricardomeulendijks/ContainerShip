@@ -16,9 +16,7 @@ namespace ContainerSchip.Test
         [TestInitialize]
         public void Prep()
         {
-            _ship = new Ship(6,4);
-
-            for (int i = 0; i < 25; i++)
+            for (int i = 0; i < 10; i++)
             {
                 Container container = new Container()
                 {
@@ -34,11 +32,30 @@ namespace ContainerSchip.Test
         [TestMethod]
         public void SliceAddsBlockingContainersToList()
         {
+            _ship = new Ship(4, 4);
+
             _ship.PlaceNormal(_containers);
-            List<Container> blocked = _ship.ShipSides[0].ShipSlices[0].GetblockingContainer(1, 1);
+            List<Container> blocked = _ship.ShipSides[0].ShipSlices[0].GetblockingContainers(1,0);
 
-            Assert.AreEqual(1, blocked.Count);
+            Assert.AreEqual(2, blocked.Count);
+        }
 
+        [TestMethod]
+        public void NotpossibleToAddOnPlaceWhereAlreadyContainerExists()
+        {
+            _ship = new Ship(2, 2);
+
+            _ship.PlaceNormal(_containers);
+            Assert.AreEqual(false,_ship.ShipSides[0].ShipSlices[0].PosibleToAddContainer(1, 1));
+        }
+
+        [TestMethod]
+        public void PossibleToAddHighValue()
+        {
+            _ship = new Ship(2, 2);
+
+            _ship.PlaceNormal(_containers);
+            Assert.AreEqual(true, _ship.ShipSides[0].ShipSlices[0].PosibleToAddContainer(1, 3));
         }
 
     }
