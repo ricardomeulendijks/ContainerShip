@@ -33,6 +33,40 @@ namespace ContainerSchip.Logic
             }
         }
 
+        public List<Container> GetblockingContainers(int towerIndex, int height) 
+        {
+            List<Container> blockingContainers = new List<Container>();
+            if (towerIndex > 0)
+            {
+                if (Towers[towerIndex - 1].ContanerSpots[height].Container != null) blockingContainers.Add(Towers[towerIndex - 1].ContanerSpots[height].Container);
+            }
+
+            if (towerIndex < Towers.Count - 1)
+            {
+                if (Towers[towerIndex + 1].ContanerSpots[height].Container != null) blockingContainers.Add(Towers[towerIndex + 1].ContanerSpots[height].Container);
+            }
+
+            return blockingContainers; 
+        }
+
+        public bool PosibleToAddContainer(int towerIndex, int height)
+        {
+            List<Container> blockingContainers = GetblockingContainers(towerIndex, height);
+
+            // Container doesn't get blocked or container behind is not important
+            if (blockingContainers.Count == 0 || blockingContainers[0].Type != Type.HighValue) return true;
+
+            // Container got blocked
+            if (blockingContainers.Count == 2) return false;
+
+            // Other Container doesn't get blocked
+            if (GetblockingContainers(towerIndex - 1, height).Count == 0 && GetblockingContainers(towerIndex + 1, height).Count == 0) return true;
+            
+            // Other Container gets blocked
+            return false; 
+
+        }
+
         public int GetMostEmptyTower()
         {
             return Towers.IndexOf(Towers.Find(c => c.CalculateWeight() == Towers.Min(a => a.CalculateWeight())));

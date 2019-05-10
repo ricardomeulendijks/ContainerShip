@@ -81,7 +81,7 @@ namespace ContainerSchip
             }
 
             if(cooledContainers.Count > 0) ship.PlaceCooled(cooledContainers);
-            if(normalContainers.Count > 0) ship.Place(normalContainers);
+            if(normalContainers.Count > 0) ship.PlaceNormal(normalContainers);
             GenerateButtons(ship.Width,ship.Length);
         }
 

@@ -38,7 +38,7 @@ namespace ContainerSchip.Test
             _containers.Add(container1);
 
             // Method returns containers that are not placed. 
-            Assert.AreEqual(1,_ship.Place(_containers).Count); 
+            Assert.AreEqual(1,_ship.PlaceNormal(_containers).Count); 
         }
 
 

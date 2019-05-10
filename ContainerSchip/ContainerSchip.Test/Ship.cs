@@ -67,7 +67,7 @@ namespace ContainerSchip.Test
                 containers.Add(container);              
             }
 
-            Assert.AreEqual(0, _ship.Place(containers).Count);
+            Assert.AreEqual(0, _ship.PlaceNormal(containers).Count);
             double side1 = _ship.ShipSides[0].CalculateWeight();
             double side2 = _ship.ShipSides[1].CalculateWeight();
 
@@ -94,7 +94,7 @@ namespace ContainerSchip.Test
                 containers.Add(container);
             }
 
-            _ship.Place(containers); 
+            _ship.PlaceNormal(containers); 
             Assert.AreEqual(true, _ship.ShipIsMoreThenFiftyPercentLoaded());
 
         }

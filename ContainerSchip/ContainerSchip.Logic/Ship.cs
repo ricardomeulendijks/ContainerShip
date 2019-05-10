@@ -100,11 +100,37 @@ namespace ContainerSchip.Logic
             return unplaced;
         }
 
-        public List<Container> Place(List<Container> normalContainers)
+        public List<Container> PlaceNormal (List<Container> normalContainers)
         {
             int index = 0;
             List<Container> unplaced = new List<Container>();
             foreach (var container in normalContainers)
+            {
+                ShipSide side = ShipSides[GetMostEmptySide()];
+                ShipSlice shipslice = side.ShipSlices[side.GetMostEmptySlice()];
+                ShipTower tower = shipslice.Towers[shipslice.GetMostEmptyTower()];
+
+                if (!tower.ContainerFits(container)) 
+                {
+                    unplaced.Add(container);
+                }
+                else
+                {
+                    ContainerSpot spot = tower.ContanerSpots[tower.GetFirstEmptySpot()];
+                    if (!spot.AddContainer(container)) unplaced.Add(container);
+                }
+                index++;
+            }
+
+            Console.WriteLine("Containers not placed " + unplaced.Count);
+            return unplaced;
+        }
+        
+        public List<Container> PlaceHighValue (List<Container> highValueContainers)
+        {
+            int index = 0;
+            List<Container> unplaced = new List<Container>();
+            foreach (var container in highValueContainers)
             {
                 ShipSide side = ShipSides[GetMostEmptySide()];
                 ShipSlice shipslice = side.ShipSlices[side.GetMostEmptySlice()];

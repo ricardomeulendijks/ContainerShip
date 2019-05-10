@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Text;
 using ContainerSchip.Logic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -9,7 +8,7 @@ using Type = ContainerSchip.Logic.Type;
 namespace ContainerSchip.Test
 {
     [TestClass]
-    public class TowerTest
+    public class SliceTest
     {
         private Ship _ship;
         private List<Container> _containers = new List<Container>();
@@ -17,27 +16,29 @@ namespace ContainerSchip.Test
         [TestInitialize]
         public void Prep()
         {
-            for (int i = 0; i < 5; i++)
+            _ship = new Ship(6,4);
+
+            for (int i = 0; i < 25; i++)
             {
                 Container container = new Container()
                 {
-                    Placed = false,
+                    Placed = true,
                     Type = Type.Normal
                 };
-                container.SetWeight(10000);
+
+                container.SetWeight(2400);
                 _containers.Add(container);
             }
-            
         }
 
         [TestMethod]
-        public void GetFirstEmptySpotInTower()
+        public void SliceAddsBlockingContainersToList()
         {
-            _ship = new Ship(1,2);
             _ship.PlaceNormal(_containers);
+            List<Container> blocked = _ship.ShipSides[0].ShipSlices[0].GetblockingContainer(1, 1);
 
-            Assert.AreEqual(3,_ship.ShipSides[0].ShipSlices[0].Towers[0].GetFirstEmptySpot());
-            Assert.AreEqual(2,_ship.ShipSides[1].ShipSlices[0].Towers[0].GetFirstEmptySpot());
+            Assert.AreEqual(1, blocked.Count);
+
         }
 
     }

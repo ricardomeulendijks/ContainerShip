@@ -42,152 +42,110 @@
             this.Sort = new System.Windows.Forms.Button();
             this.LbWeight = new System.Windows.Forms.Label();
             this.loadPercentage = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.Length)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Width)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NbWeight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.Length)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.Width)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.NbWeight)).BeginInit();
             this.SuspendLayout();
-            // 
-            // GenerateShip
-            // 
-            this.GenerateShip.Location = new System.Drawing.Point(112, 64);
+            this.GenerateShip.Location = new System.Drawing.Point(131, 74);
+            this.GenerateShip.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.GenerateShip.Name = "GenerateShip";
-            this.GenerateShip.Size = new System.Drawing.Size(75, 23);
+            this.GenerateShip.Size = new System.Drawing.Size(88, 27);
             this.GenerateShip.TabIndex = 0;
             this.GenerateShip.Text = "Create Ship";
             this.GenerateShip.UseVisualStyleBackColor = true;
             this.GenerateShip.Click += new System.EventHandler(this.GenerateShip_Click);
-            // 
-            // Length
-            // 
-            this.Length.Location = new System.Drawing.Point(67, 12);
+            this.Length.Location = new System.Drawing.Point(78, 14);
+            this.Length.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Length.Name = "Length";
-            this.Length.Size = new System.Drawing.Size(120, 20);
+            this.Length.Size = new System.Drawing.Size(140, 23);
             this.Length.TabIndex = 1;
-            // 
-            // Width
-            // 
-            this.Width.Increment = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            this.Width.Location = new System.Drawing.Point(67, 38);
+            this.Width.Increment = new decimal(new int[] {2, 0, 0, 0});
+            this.Width.Location = new System.Drawing.Point(78, 44);
+            this.Width.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Width.Name = "Width";
-            this.Width.Size = new System.Drawing.Size(120, 20);
+            this.Width.Size = new System.Drawing.Size(140, 23);
             this.Width.TabIndex = 2;
-            // 
-            // label1
-            // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 19);
+            this.label1.Location = new System.Drawing.Point(18, 22);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.Size = new System.Drawing.Size(44, 15);
             this.label1.TabIndex = 3;
             this.label1.Text = "Length";
-            // 
-            // label2
-            // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 45);
+            this.label2.Location = new System.Drawing.Point(23, 52);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.Size = new System.Drawing.Size(39, 15);
             this.label2.TabIndex = 4;
             this.label2.Text = "Width";
-            // 
-            // NbWeight
-            // 
-            this.NbWeight.Increment = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.NbWeight.Location = new System.Drawing.Point(67, 126);
-            this.NbWeight.Maximum = new decimal(new int[] {
-            24000,
-            0,
-            0,
-            0});
+            this.NbWeight.Increment = new decimal(new int[] {100, 0, 0, 0});
+            this.NbWeight.Location = new System.Drawing.Point(78, 145);
+            this.NbWeight.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.NbWeight.Maximum = new decimal(new int[] {24000, 0, 0, 0});
             this.NbWeight.Name = "NbWeight";
-            this.NbWeight.Size = new System.Drawing.Size(120, 20);
+            this.NbWeight.Size = new System.Drawing.Size(140, 23);
             this.NbWeight.TabIndex = 5;
-            // 
-            // label3
-            // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(20, 128);
+            this.label3.Location = new System.Drawing.Point(23, 148);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 13);
+            this.label3.Size = new System.Drawing.Size(45, 15);
             this.label3.TabIndex = 6;
             this.label3.Text = "Weight";
-            // 
-            // label4
-            // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(24, 155);
+            this.label4.Location = new System.Drawing.Point(28, 179);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(31, 13);
+            this.label4.Size = new System.Drawing.Size(32, 15);
             this.label4.TabIndex = 7;
             this.label4.Text = "Type";
-            // 
-            // CbType
-            // 
             this.CbType.FormattingEnabled = true;
-            this.CbType.Location = new System.Drawing.Point(66, 152);
+            this.CbType.Location = new System.Drawing.Point(77, 175);
+            this.CbType.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.CbType.Name = "CbType";
-            this.CbType.Size = new System.Drawing.Size(121, 21);
+            this.CbType.Size = new System.Drawing.Size(140, 23);
             this.CbType.TabIndex = 8;
-            // 
-            // AddContainer
-            // 
-            this.AddContainer.Location = new System.Drawing.Point(112, 179);
+            this.AddContainer.Location = new System.Drawing.Point(131, 207);
+            this.AddContainer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.AddContainer.Name = "AddContainer";
-            this.AddContainer.Size = new System.Drawing.Size(75, 23);
+            this.AddContainer.Size = new System.Drawing.Size(88, 27);
             this.AddContainer.TabIndex = 9;
             this.AddContainer.Text = "Add Container";
             this.AddContainer.UseVisualStyleBackColor = true;
             this.AddContainer.Click += new System.EventHandler(this.AddContainer_Click);
-            // 
-            // LbContainers
-            // 
             this.LbContainers.FormattingEnabled = true;
-            this.LbContainers.Location = new System.Drawing.Point(27, 219);
+            this.LbContainers.ItemHeight = 15;
+            this.LbContainers.Location = new System.Drawing.Point(31, 253);
+            this.LbContainers.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.LbContainers.Name = "LbContainers";
-            this.LbContainers.Size = new System.Drawing.Size(160, 199);
+            this.LbContainers.Size = new System.Drawing.Size(186, 229);
             this.LbContainers.TabIndex = 10;
-            // 
-            // Sort
-            // 
-            this.Sort.Location = new System.Drawing.Point(237, 126);
+            this.Sort.Location = new System.Drawing.Point(276, 145);
+            this.Sort.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Sort.Name = "Sort";
-            this.Sort.Size = new System.Drawing.Size(75, 82);
+            this.Sort.Size = new System.Drawing.Size(88, 95);
             this.Sort.TabIndex = 11;
             this.Sort.Text = "Sort";
             this.Sort.UseVisualStyleBackColor = true;
             this.Sort.Click += new System.EventHandler(this.Sort_Click);
-            // 
-            // LbWeight
-            // 
             this.LbWeight.AutoSize = true;
-            this.LbWeight.Location = new System.Drawing.Point(234, 231);
+            this.LbWeight.Location = new System.Drawing.Point(273, 267);
+            this.LbWeight.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LbWeight.Name = "LbWeight";
-            this.LbWeight.Size = new System.Drawing.Size(41, 13);
+            this.LbWeight.Size = new System.Drawing.Size(45, 15);
             this.LbWeight.TabIndex = 12;
             this.LbWeight.Text = "Weight";
-            // 
-            // loadPercentage
-            // 
             this.loadPercentage.AutoSize = true;
-            this.loadPercentage.Location = new System.Drawing.Point(234, 257);
+            this.loadPercentage.Location = new System.Drawing.Point(273, 297);
+            this.loadPercentage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.loadPercentage.Name = "loadPercentage";
-            this.loadPercentage.Size = new System.Drawing.Size(42, 13);
+            this.loadPercentage.Size = new System.Drawing.Size(46, 15);
             this.loadPercentage.TabIndex = 13;
             this.loadPercentage.Text = "Load %";
-            // 
-            // Form1
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(933, 519);
             this.Controls.Add(this.loadPercentage);
             this.Controls.Add(this.LbWeight);
             this.Controls.Add(this.Sort);
@@ -202,14 +160,14 @@
             this.Controls.Add(this.Width);
             this.Controls.Add(this.Length);
             this.Controls.Add(this.GenerateShip);
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.Length)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Width)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NbWeight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.Length)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.Width)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.NbWeight)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
