@@ -36,6 +36,7 @@ namespace ContainerSchip.Logic
         public List<Container> GetblockingContainers(int towerIndex, int height) 
         {
             List<Container> blockingContainers = new List<Container>();
+
             if (towerIndex > 0)
             {
                 if (Towers[towerIndex - 1].ContanerSpots[height].Container != null) blockingContainers.Add(Towers[towerIndex - 1].ContanerSpots[height].Container);
@@ -49,11 +50,18 @@ namespace ContainerSchip.Logic
             return blockingContainers; 
         }
 
-        public bool PosibleToAddContainer(int towerIndex, int height)
+        public bool PosibleToAddHighValueContainer(int towerIndex, int height)
         {
             List<Container> blockingContainers = GetblockingContainers(towerIndex, height);
 
+            // Check if container spot is not already filled with another container
             if (Towers[towerIndex].ContanerSpots[height].Container != null) return false;
+
+            // check if container not floats and if container not stacks another highvalue container
+            if (height != 0)
+            {
+                if (Towers[towerIndex].ContanerSpots[height - 1].Container == null || Towers[towerIndex].ContanerSpots[height - 1].Container.Type == Type.HighValue) return false;
+            }
 
             // Container doesn't get blocked or container behind is not important
             if (blockingContainers.Count == 0 || blockingContainers[0].Type != Type.HighValue) return true;
@@ -81,7 +89,6 @@ namespace ContainerSchip.Logic
             {
                weight = weight + tower.CalculateWeight();
             }
-
             return weight;
         }
     }

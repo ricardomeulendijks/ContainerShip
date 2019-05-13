@@ -20,5 +20,10 @@ namespace ContainerSchip.Logic
         {
             Weight = Weight + value;
         }
+
+        public override string ToString()
+        {
+            return Type.ToString() + " " + Weight.ToString();
+        }
     }
 }

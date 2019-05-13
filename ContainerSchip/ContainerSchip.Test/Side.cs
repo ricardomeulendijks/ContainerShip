@@ -17,12 +17,13 @@ namespace ContainerSchip.Test
         [TestInitialize]
         public void Prep()
         {
-            _ship = new Ship(1,4);
+
         }
 
         [TestMethod]
         public void GetSliceWithTheMostEmptyCooledTower()
         {
+            _ship = new Ship(1, 4);
             Container container = new Container();
             container.Type = Type.Cooled; 
             container.SetWeight(24000);
@@ -31,6 +32,14 @@ namespace ContainerSchip.Test
             _ship.PlaceCooled(_containers);
 
             Assert.AreEqual(1, _ship.ShipSides[0].GetMostEmptyCooledSlice()); 
+        }
+
+        [TestMethod]
+        public void GetAllPossibleHighValueIndexes()
+        {
+            _ship = new Ship(4, 4);
+            Assert.AreEqual(8, _ship.ShipSides[0].GetHighValueIndexes().Count);
+            Assert.AreEqual(8, _ship.ShipSides[1].GetHighValueIndexes().Count);
         }
 
     }

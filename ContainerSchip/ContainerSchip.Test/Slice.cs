@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using ContainerSchip.Logic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -46,16 +47,16 @@ namespace ContainerSchip.Test
             _ship = new Ship(2, 2);
 
             _ship.PlaceNormal(_containers);
-            Assert.AreEqual(false,_ship.ShipSides[0].ShipSlices[0].PosibleToAddContainer(1, 1));
+            Assert.AreEqual(false,_ship.ShipSides[0].ShipSlices[0].PosibleToAddHighValueContainer(1, 1));
         }
 
         [TestMethod]
         public void PossibleToAddHighValue()
         {
-            _ship = new Ship(2, 2);
+            _ship = new Ship(6,6);
 
             _ship.PlaceNormal(_containers);
-            Assert.AreEqual(true, _ship.ShipSides[0].ShipSlices[0].PosibleToAddContainer(1, 3));
+            Assert.AreEqual(true, _ship.ShipSides[0].ShipSlices[0].PosibleToAddHighValueContainer(0,1));
         }
 
     }

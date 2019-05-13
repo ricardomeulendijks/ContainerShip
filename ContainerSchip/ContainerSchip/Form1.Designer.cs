@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.GenerateShip = new System.Windows.Forms.Button();
             this.Length = new System.Windows.Forms.NumericUpDown();
             this.Width = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
@@ -42,110 +41,210 @@
             this.Sort = new System.Windows.Forms.Button();
             this.LbWeight = new System.Windows.Forms.Label();
             this.loadPercentage = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize) (this.Length)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize) (this.Width)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize) (this.NbWeight)).BeginInit();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.libUnplaced = new System.Windows.Forms.ListBox();
+            this.lbLoad = new System.Windows.Forms.Label();
+            this.BtnReset = new System.Windows.Forms.Button();
+            this.BtnVaar = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.Length)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Width)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NbWeight)).BeginInit();
             this.SuspendLayout();
-            this.GenerateShip.Location = new System.Drawing.Point(131, 74);
-            this.GenerateShip.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.GenerateShip.Name = "GenerateShip";
-            this.GenerateShip.Size = new System.Drawing.Size(88, 27);
-            this.GenerateShip.TabIndex = 0;
-            this.GenerateShip.Text = "Create Ship";
-            this.GenerateShip.UseVisualStyleBackColor = true;
-            this.GenerateShip.Click += new System.EventHandler(this.GenerateShip_Click);
-            this.Length.Location = new System.Drawing.Point(78, 14);
-            this.Length.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            // 
+            // Length
+            // 
+            this.Length.Location = new System.Drawing.Point(67, 12);
             this.Length.Name = "Length";
-            this.Length.Size = new System.Drawing.Size(140, 23);
+            this.Length.Size = new System.Drawing.Size(120, 20);
             this.Length.TabIndex = 1;
-            this.Width.Increment = new decimal(new int[] {2, 0, 0, 0});
-            this.Width.Location = new System.Drawing.Point(78, 44);
-            this.Width.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            // 
+            // Width
+            // 
+            this.Width.Increment = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.Width.Location = new System.Drawing.Point(67, 38);
             this.Width.Name = "Width";
-            this.Width.Size = new System.Drawing.Size(140, 23);
+            this.Width.Size = new System.Drawing.Size(120, 20);
             this.Width.TabIndex = 2;
+            // 
+            // label1
+            // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 22);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(15, 19);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 15);
+            this.label1.Size = new System.Drawing.Size(40, 13);
             this.label1.TabIndex = 3;
             this.label1.Text = "Length";
+            // 
+            // label2
+            // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 52);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(20, 45);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(39, 15);
+            this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "Width";
-            this.NbWeight.Increment = new decimal(new int[] {100, 0, 0, 0});
-            this.NbWeight.Location = new System.Drawing.Point(78, 145);
-            this.NbWeight.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.NbWeight.Maximum = new decimal(new int[] {24000, 0, 0, 0});
+            // 
+            // NbWeight
+            // 
+            this.NbWeight.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.NbWeight.Location = new System.Drawing.Point(67, 126);
+            this.NbWeight.Maximum = new decimal(new int[] {
+            24000,
+            0,
+            0,
+            0});
             this.NbWeight.Name = "NbWeight";
-            this.NbWeight.Size = new System.Drawing.Size(140, 23);
+            this.NbWeight.Size = new System.Drawing.Size(120, 20);
             this.NbWeight.TabIndex = 5;
+            // 
+            // label3
+            // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(23, 148);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(20, 128);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(45, 15);
+            this.label3.Size = new System.Drawing.Size(41, 13);
             this.label3.TabIndex = 6;
             this.label3.Text = "Weight";
+            // 
+            // label4
+            // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(28, 179);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(24, 155);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(32, 15);
+            this.label4.Size = new System.Drawing.Size(31, 13);
             this.label4.TabIndex = 7;
             this.label4.Text = "Type";
+            // 
+            // CbType
+            // 
             this.CbType.FormattingEnabled = true;
-            this.CbType.Location = new System.Drawing.Point(77, 175);
-            this.CbType.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.CbType.Location = new System.Drawing.Point(66, 152);
             this.CbType.Name = "CbType";
-            this.CbType.Size = new System.Drawing.Size(140, 23);
+            this.CbType.Size = new System.Drawing.Size(121, 21);
             this.CbType.TabIndex = 8;
-            this.AddContainer.Location = new System.Drawing.Point(131, 207);
-            this.AddContainer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            // 
+            // AddContainer
+            // 
+            this.AddContainer.Location = new System.Drawing.Point(112, 179);
             this.AddContainer.Name = "AddContainer";
-            this.AddContainer.Size = new System.Drawing.Size(88, 27);
+            this.AddContainer.Size = new System.Drawing.Size(75, 23);
             this.AddContainer.TabIndex = 9;
             this.AddContainer.Text = "Add Container";
             this.AddContainer.UseVisualStyleBackColor = true;
             this.AddContainer.Click += new System.EventHandler(this.AddContainer_Click);
+            // 
+            // LbContainers
+            // 
             this.LbContainers.FormattingEnabled = true;
-            this.LbContainers.ItemHeight = 15;
-            this.LbContainers.Location = new System.Drawing.Point(31, 253);
-            this.LbContainers.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.LbContainers.Location = new System.Drawing.Point(27, 231);
             this.LbContainers.Name = "LbContainers";
-            this.LbContainers.Size = new System.Drawing.Size(186, 229);
+            this.LbContainers.Size = new System.Drawing.Size(160, 225);
             this.LbContainers.TabIndex = 10;
-            this.Sort.Location = new System.Drawing.Point(276, 145);
-            this.Sort.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            // 
+            // Sort
+            // 
+            this.Sort.Location = new System.Drawing.Point(27, 583);
             this.Sort.Name = "Sort";
-            this.Sort.Size = new System.Drawing.Size(88, 95);
+            this.Sort.Size = new System.Drawing.Size(75, 82);
             this.Sort.TabIndex = 11;
             this.Sort.Text = "Sort";
             this.Sort.UseVisualStyleBackColor = true;
             this.Sort.Click += new System.EventHandler(this.Sort_Click);
+            // 
+            // LbWeight
+            // 
             this.LbWeight.AutoSize = true;
-            this.LbWeight.Location = new System.Drawing.Point(273, 267);
-            this.LbWeight.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LbWeight.Location = new System.Drawing.Point(108, 592);
             this.LbWeight.Name = "LbWeight";
-            this.LbWeight.Size = new System.Drawing.Size(45, 15);
+            this.LbWeight.Size = new System.Drawing.Size(41, 13);
             this.LbWeight.TabIndex = 12;
             this.LbWeight.Text = "Weight";
+            // 
+            // loadPercentage
+            // 
             this.loadPercentage.AutoSize = true;
-            this.loadPercentage.Location = new System.Drawing.Point(273, 297);
-            this.loadPercentage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.loadPercentage.Location = new System.Drawing.Point(108, 618);
             this.loadPercentage.Name = "loadPercentage";
-            this.loadPercentage.Size = new System.Drawing.Size(46, 15);
+            this.loadPercentage.Size = new System.Drawing.Size(42, 13);
             this.loadPercentage.TabIndex = 13;
             this.loadPercentage.Text = "Load %";
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(24, 215);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(83, 13);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "Container Stack";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(24, 468);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(106, 13);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "Unplaced Containers";
+            // 
+            // libUnplaced
+            // 
+            this.libUnplaced.FormattingEnabled = true;
+            this.libUnplaced.Location = new System.Drawing.Point(27, 484);
+            this.libUnplaced.Name = "libUnplaced";
+            this.libUnplaced.Size = new System.Drawing.Size(160, 82);
+            this.libUnplaced.TabIndex = 15;
+            // 
+            // lbLoad
+            // 
+            this.lbLoad.AutoSize = true;
+            this.lbLoad.Location = new System.Drawing.Point(108, 641);
+            this.lbLoad.Name = "lbLoad";
+            this.lbLoad.Size = new System.Drawing.Size(42, 13);
+            this.lbLoad.TabIndex = 17;
+            this.lbLoad.Text = "Load %";
+            // 
+            // BtnReset
+            // 
+            this.BtnReset.Location = new System.Drawing.Point(27, 674);
+            this.BtnReset.Name = "BtnReset";
+            this.BtnReset.Size = new System.Drawing.Size(75, 56);
+            this.BtnReset.TabIndex = 18;
+            this.BtnReset.Text = "Reset";
+            this.BtnReset.UseVisualStyleBackColor = true;
+            this.BtnReset.Click += new System.EventHandler(this.BtnReset_Click);
+            // 
+            // BtnVaar
+            // 
+            this.BtnVaar.Location = new System.Drawing.Point(108, 675);
+            this.BtnVaar.Name = "BtnVaar";
+            this.BtnVaar.Size = new System.Drawing.Size(75, 56);
+            this.BtnVaar.TabIndex = 19;
+            this.BtnVaar.Text = "Vaar weg! ";
+            this.BtnVaar.UseVisualStyleBackColor = true;
+            this.BtnVaar.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(933, 519);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(1346, 742);
+            this.Controls.Add(this.BtnVaar);
+            this.Controls.Add(this.BtnReset);
+            this.Controls.Add(this.lbLoad);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.libUnplaced);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.loadPercentage);
             this.Controls.Add(this.LbWeight);
             this.Controls.Add(this.Sort);
@@ -159,20 +258,17 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Width);
             this.Controls.Add(this.Length);
-            this.Controls.Add(this.GenerateShip);
-            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize) (this.Length)).EndInit();
-            ((System.ComponentModel.ISupportInitialize) (this.Width)).EndInit();
-            ((System.ComponentModel.ISupportInitialize) (this.NbWeight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Length)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Width)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NbWeight)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion
-
-        private System.Windows.Forms.Button GenerateShip;
         private System.Windows.Forms.NumericUpDown Length;
         private System.Windows.Forms.NumericUpDown Width;
         private System.Windows.Forms.Label label1;
@@ -186,6 +282,12 @@
         private System.Windows.Forms.Button Sort;
         private System.Windows.Forms.Label LbWeight;
         private System.Windows.Forms.Label loadPercentage;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ListBox libUnplaced;
+        private System.Windows.Forms.Label lbLoad;
+        private System.Windows.Forms.Button BtnReset;
+        private System.Windows.Forms.Button BtnVaar;
     }
 }
 

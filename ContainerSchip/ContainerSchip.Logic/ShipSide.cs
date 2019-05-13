@@ -25,6 +25,31 @@ namespace ContainerSchip.Logic
             }
         }
 
+        public List<HighValueIndex> GetHighValueIndexes()
+        {
+            List<HighValueIndex> values = new List<HighValueIndex>();
+
+            foreach (var slice in ShipSlices)
+            {
+                for (int tower = 0; tower < slice.Towers.Count; tower++)
+                {
+                    for (int spot = 0; spot < slice.Towers[tower].ContanerSpots.Count; spot++)
+                    {
+                        if (slice.PosibleToAddHighValueContainer(tower, spot))
+                        {
+                            HighValueIndex index = new HighValueIndex();
+                            index.Spot = spot;
+                            index.Tower = tower;
+                            index.Slice = ShipSlices.IndexOf(slice);
+                            values.Add(index);
+                        }
+                    }
+                }
+            }
+
+            return values;
+        }
+
         public int GetMostEmptyCooledSlice()
         {
             return ShipSlices.IndexOf(ShipSlices.Find(c => c.Towers[0].CalculateWeight() == ShipSlices.Min(a => a.Towers[0].CalculateWeight())));

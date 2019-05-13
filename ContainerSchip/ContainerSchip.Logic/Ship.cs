@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 
 namespace ContainerSchip.Logic
 {
@@ -12,6 +13,8 @@ namespace ContainerSchip.Logic
     {
         private readonly Container _container = new Container();
         public List<ShipSide> ShipSides = new List<ShipSide>();
+        private readonly Random random = new Random();
+
         public int Length;
         public int Width; 
 
@@ -38,16 +41,19 @@ namespace ContainerSchip.Logic
 
         public bool ShipIsMoreThenFiftyPercentLoaded()
         {
-            int actualWeight = ShipSides[0].CalculateWeight() + ShipSides[1].CalculateWeight();
-            int maxWeight = Length * Width * (Container.MaxStackWeight + Container.MaxWeight);
+            if (GetLoadPercentage() <= 50) return false;
+            return true; 
+        }
 
-            decimal percentage = actualWeight / maxWeight * 100;
+        public double GetLoadPercentage()
+        {
+            double actualWeight = ShipSides[0].CalculateWeight() + ShipSides[1].CalculateWeight();
+            double maxWeight = Length * Width * (Container.MaxStackWeight + Container.MaxWeight);
+
+            double percentage = (double)(actualWeight / maxWeight) * 100;
 
             Console.WriteLine("Ship is " + percentage + "% loaded");
-            if (percentage <= 50) return false;
-
-            return true; 
-
+            return percentage;
         }
 
         private int GetMaxHeightOfRows()
@@ -75,15 +81,29 @@ namespace ContainerSchip.Logic
             }
         }
 
+        public bool LoadBalancingIsOk()
+        {
+            return GetLoadBalancingPercentage() < 20;
+        }
+
+        public List<Container> PlaceContainers(List<Container> normal, List<Container> cooled, List<Container> highValue)
+        {
+            List<Container> unsorted = new List<Container>();
+
+            if (normal.Count > 0) unsorted.AddRange(PlaceNormal(normal)); 
+            if (cooled.Count > 0) unsorted.AddRange(PlaceCooled(cooled)); 
+            if (highValue.Count > 0) unsorted.AddRange(PlaceHighValue(highValue));
+
+            return unsorted; 
+        }
+
         public List<Container> PlaceCooled(List<Container> cooledContainers)
         {
             List<Container> unplaced = new List<Container>();
-
-            int index = 0;
             foreach (var container in cooledContainers)
             {
                 ShipSide side = ShipSides[GetMostEmptySide()];
-                ShipSlice slice = side.ShipSlices[side.GetMostEmptySlice()];
+                ShipSlice slice = side.ShipSlices[side.GetMostEmptyCooledSlice()];
                 ShipTower tower = slice.Towers[0];
                 if (!tower.ContainerFits(container))
                 {
@@ -94,7 +114,6 @@ namespace ContainerSchip.Logic
                     ContainerSpot spot = tower.ContanerSpots[tower.GetFirstEmptySpot()];
                     if (!spot.AddContainer(container)) unplaced.Add(container);
                 }
-                index++;
             }
             Console.WriteLine(unplaced.Count + " Containers not placed");
             return unplaced;
@@ -102,7 +121,6 @@ namespace ContainerSchip.Logic
 
         public List<Container> PlaceNormal (List<Container> normalContainers)
         {
-            int index = 0;
             List<Container> unplaced = new List<Container>();
             foreach (var container in normalContainers)
             {
@@ -119,7 +137,6 @@ namespace ContainerSchip.Logic
                     ContainerSpot spot = tower.ContanerSpots[tower.GetFirstEmptySpot()];
                     if (!spot.AddContainer(container)) unplaced.Add(container);
                 }
-                index++;
             }
 
             Console.WriteLine("Containers not placed " + unplaced.Count);
@@ -129,25 +146,23 @@ namespace ContainerSchip.Logic
         public List<Container> PlaceHighValue (List<Container> highValueContainers)
         {
             List<Container> unplaced = new List<Container>();
+
             foreach (var container in highValueContainers)
             {
                 ShipSide side = ShipSides[GetMostEmptySide()];
-                ShipSlice shipslice = side.ShipSlices[side.GetMostEmptySlice()];
-                ShipTower tower = shipslice.Towers[shipslice.GetMostEmptyTower()];
+                List<HighValueIndex> indexes = side.GetHighValueIndexes();
 
-                if (!tower.ContainerFits(container)) 
+                if (indexes.Count == 0)
                 {
                     unplaced.Add(container);
+                    continue;
                 }
-                else
-                {
-                    ContainerSpot spot = tower.ContanerSpots[tower.GetFirstEmptySpot()];
-                    if (!spot.AddContainer(container)) unplaced.Add(container);
-                }
+
+                HighValueIndex index = indexes[random.Next(0, indexes.Count)];
+                if (!side.ShipSlices[index.Slice].Towers[index.Tower].ContanerSpots[index.Spot].AddContainer(container)) unplaced.Add(container);
             }
 
-            Console.WriteLine("Containers not placed " + unplaced.Count);
-            return unplaced;
+            return unplaced; 
         }
     }
 }
