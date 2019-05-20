@@ -13,21 +13,12 @@ namespace ContainerSchip.Test
     {
         private Ship _ship;
         private List<Container> _containers = new List<Container>();
+        private readonly TestHelper _helper = new TestHelper();
 
         [TestInitialize]
         public void Prep()
         {
-            for (int i = 0; i < 10; i++)
-            {
-                Container container = new Container()
-                {
-                    Placed = true,
-                    Type = Type.Normal
-                };
-
-                container.SetWeight(2400);
-                _containers.Add(container);
-            }
+            _containers = _helper.GenerateContainers(Type.Normal, 2400, 10);
         }
 
         [TestMethod]

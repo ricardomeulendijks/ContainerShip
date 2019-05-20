@@ -13,6 +13,7 @@ namespace ContainerSchip.Test
     {
         private Ship _ship;
         private Container _container;
+        private readonly TestHelper _helper = new TestHelper(); 
         private int _length;
         private int _width;
 
@@ -28,20 +29,8 @@ namespace ContainerSchip.Test
         [TestMethod]
         public void PlaceCooledContainers()
         {
-            List<Container> containers = new List<Container>();
+            List<Container> containers = _helper.GenerateContainers(Type.Cooled, 24000, 12);
 
-            for (int i = 0; i < 12; i++)
-            {
-                Container container = new Container()
-                {
-                    Placed = true,
-                    Type = Type.Cooled
-                };
-
-                container.SetWeight(24000);
-
-                containers.Add(container);
-            }
             Assert.AreEqual(0,_ship.PlaceCooled(containers).Count);
             double side1 = _ship.ShipSides[0].CalculateWeight();
             double side2 = _ship.ShipSides[1].CalculateWeight();
@@ -53,19 +42,7 @@ namespace ContainerSchip.Test
         [TestMethod]
         public void LoadBalancingContainers()
         {
-            List<Container> containers = new List<Container>();
-
-            for (int i = 0; i < 11; i++)
-            {
-                Container container = new Container()
-                {
-                    Placed = true,
-                    Type = Type.Normal
-                };
-                container.SetWeight(3000);
-
-                containers.Add(container);              
-            }
+            List<Container> containers = _helper.GenerateContainers(Type.Normal, 3000, 11);
 
             Assert.AreEqual(0, _ship.PlaceNormal(containers).Count);
             double side1 = _ship.ShipSides[0].CalculateWeight();
@@ -80,22 +57,22 @@ namespace ContainerSchip.Test
         {
             _ship = new Ship(1,2);
 
-            List<Container> containers = new List<Container>();
-
-            for (int i = 0; i < 10; i++)
-            {
-                Container container = new Container()
-                {
-                    Placed = true,
-                    Type = Type.Normal
-                };
-                container.SetWeight(26000);
-
-                containers.Add(container);
-            }
+            List<Container> containers = _helper.GenerateContainers(Type.Normal, 26000, 10);
 
             _ship.PlaceNormal(containers); 
             Assert.AreEqual(true, _ship.ShipIsMoreThenFiftyPercentLoaded());
+
+        }
+
+        [TestMethod]
+        public void PlaceAllContainers()
+        {
+            List<Container> normal = _helper.GenerateContainers(Type.Normal, 1000, 10);
+            List<Container> cooled = _helper.GenerateContainers(Type.Cooled, 1000, 10);
+            List<Container> highValue = _helper.GenerateContainers(Type.HighValue, 1000, 10);
+
+            _ship = new Ship(5, 6);
+            Assert.AreEqual(0, _ship.PlaceContainers(normal, cooled, highValue).Count);
 
         }
 

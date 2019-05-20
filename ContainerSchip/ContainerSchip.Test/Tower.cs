@@ -13,21 +13,12 @@ namespace ContainerSchip.Test
     {
         private Ship _ship;
         private List<Container> _containers = new List<Container>();
+        private readonly TestHelper _helper = new TestHelper();
 
         [TestInitialize]
         public void Prep()
         {
-            for (int i = 0; i < 5; i++)
-            {
-                Container container = new Container()
-                {
-                    Placed = false,
-                    Type = Type.Normal
-                };
-                container.SetWeight(10000);
-                _containers.Add(container);
-            }
-            
+            _containers = _helper.GenerateContainers(Type.Normal, 10000, 5);
         }
 
         [TestMethod]
@@ -39,6 +30,8 @@ namespace ContainerSchip.Test
             Assert.AreEqual(3,_ship.ShipSides[0].ShipSlices[0].Towers[0].GetFirstEmptySpot());
             Assert.AreEqual(2,_ship.ShipSides[1].ShipSlices[0].Towers[0].GetFirstEmptySpot());
         }
+
+
 
     }
 }
