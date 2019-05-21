@@ -76,5 +76,21 @@ namespace ContainerSchip.Test
 
         }
 
+
+        [TestMethod]
+        public void DiferenceBetweenSidesIsNotMoreThen20Percent()
+        {
+            List<Container> normal = _helper.GenerateContainers(Type.Normal, 1000, 11);
+            List<Container> cooled = _helper.GenerateContainers(Type.Cooled, 1000, 10);
+            List<Container> highValue = _helper.GenerateContainers(Type.HighValue, 1000, 10);
+
+            _ship.PlaceContainers(normal, cooled, highValue); 
+
+            double percentage = _ship.GetLoadBalancingPercentage(); 
+            Trace.WriteLine(percentage + " %");
+            Assert.IsTrue(_ship.GetLoadBalancingPercentage() < 20);
+
+        }
+
     }
 }
